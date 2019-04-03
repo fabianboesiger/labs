@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Tue Apr  2 22:32:53 2019
+| Date         : Wed Apr  3 22:47:37 2019
 | Host         : PC_Fabian running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file TailLights_timing_summary_routed.rpt -pb TailLights_timing_summary_routed.pb -rpx TailLights_timing_summary_routed.rpx -warn_on_violation
 | Design       : TailLights
@@ -174,7 +174,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      6.036        0.000                      0                  223        0.129        0.000                      0                  223        4.500        0.000                       0                   128  
+      5.311        0.000                      0                  777        0.178        0.000                      0                  777        4.500        0.000                       0                   284  
 
 
 All user specified timing constraints are met.
@@ -197,7 +197,7 @@ clk    {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk                 6.036        0.000                      0                  223        0.129        0.000                      0                  223        4.500        0.000                       0                   128  
+clk                 5.311        0.000                      0                  777        0.178        0.000                      0                  777        4.500        0.000                       0                   284  
 
 
 ------------------------------------------------------------------------------------------------
@@ -228,28 +228,28 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  clk
   To Clock:  clk
 
-Setup :            0  Failing Endpoints,  Worst Slack        6.036ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.129ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        5.311ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.178ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             6.036ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[3]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.311ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[4]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.736ns  (logic 1.133ns (30.330%)  route 2.603ns (69.670%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
-  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.780ns = ( 14.780 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.273ns
+  Data Path Delay:        4.108ns  (logic 0.890ns (21.663%)  route 3.218ns (78.337%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.855ns = ( 14.855 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.274ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -264,16 +264,18 @@ Slack (MET) :             6.036ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.575     8.813    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X10Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[3]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.669     9.259    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[4]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -282,31 +284,31 @@ Slack (MET) :             6.036ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.439    14.780    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[3]/C
-                         clock pessimism              0.273    15.053    
-                         clock uncertainty           -0.035    15.018    
-    SLICE_X10Y28         FDCE (Setup_fdce_C_CE)      -0.169    14.849    rightLoop/brightnessControllerB/off_count_reg[3]
+                         net (fo=283, routed)         1.514    14.855    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[4]/C
+                         clock pessimism              0.274    15.129    
+                         clock uncertainty           -0.035    15.094    
+    SLICE_X2Y13          FDRE (Setup_fdre_C_R)       -0.524    14.570    leftLoop/brightnessControllerB/clk_count_reg[4]
   -------------------------------------------------------------------
-                         required time                         14.849    
-                         arrival time                          -8.813    
+                         required time                         14.570    
+                         arrival time                          -9.259    
   -------------------------------------------------------------------
-                         slack                                  6.036    
+                         slack                                  5.311    
 
-Slack (MET) :             6.036ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[5]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.311ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[5]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.736ns  (logic 1.133ns (30.330%)  route 2.603ns (69.670%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
-  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.780ns = ( 14.780 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.273ns
+  Data Path Delay:        4.108ns  (logic 0.890ns (21.663%)  route 3.218ns (78.337%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.855ns = ( 14.855 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.274ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -321,16 +323,18 @@ Slack (MET) :             6.036ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.575     8.813    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X10Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[5]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.669     9.259    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[5]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -339,31 +343,31 @@ Slack (MET) :             6.036ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.439    14.780    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[5]/C
-                         clock pessimism              0.273    15.053    
-                         clock uncertainty           -0.035    15.018    
-    SLICE_X10Y28         FDCE (Setup_fdce_C_CE)      -0.169    14.849    rightLoop/brightnessControllerB/off_count_reg[5]
+                         net (fo=283, routed)         1.514    14.855    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[5]/C
+                         clock pessimism              0.274    15.129    
+                         clock uncertainty           -0.035    15.094    
+    SLICE_X2Y13          FDRE (Setup_fdre_C_R)       -0.524    14.570    leftLoop/brightnessControllerB/clk_count_reg[5]
   -------------------------------------------------------------------
-                         required time                         14.849    
-                         arrival time                          -8.813    
+                         required time                         14.570    
+                         arrival time                          -9.259    
   -------------------------------------------------------------------
-                         slack                                  6.036    
+                         slack                                  5.311    
 
-Slack (MET) :             6.053ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[6]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.311ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[6]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.705ns  (logic 1.133ns (30.584%)  route 2.572ns (69.416%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
-  Clock Path Skew:        -0.038ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.779ns = ( 14.779 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.260ns
+  Data Path Delay:        4.108ns  (logic 0.890ns (21.663%)  route 3.218ns (78.337%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.855ns = ( 14.855 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.274ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -378,16 +382,18 @@ Slack (MET) :             6.053ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.544     8.782    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X8Y28          FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[6]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.669     9.259    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[6]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -396,31 +402,90 @@ Slack (MET) :             6.053ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.438    14.779    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X8Y28          FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[6]/C
-                         clock pessimism              0.260    15.039    
-                         clock uncertainty           -0.035    15.004    
-    SLICE_X8Y28          FDCE (Setup_fdce_C_CE)      -0.169    14.835    rightLoop/brightnessControllerB/off_count_reg[6]
+                         net (fo=283, routed)         1.514    14.855    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[6]/C
+                         clock pessimism              0.274    15.129    
+                         clock uncertainty           -0.035    15.094    
+    SLICE_X2Y13          FDRE (Setup_fdre_C_R)       -0.524    14.570    leftLoop/brightnessControllerB/clk_count_reg[6]
   -------------------------------------------------------------------
-                         required time                         14.835    
-                         arrival time                          -8.782    
+                         required time                         14.570    
+                         arrival time                          -9.259    
   -------------------------------------------------------------------
-                         slack                                  6.053    
+                         slack                                  5.311    
 
-Slack (MET) :             6.139ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[0]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.311ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[7]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.656ns  (logic 1.133ns (30.987%)  route 2.523ns (69.013%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
+  Data Path Delay:        4.108ns  (logic 0.890ns (21.663%)  route 3.218ns (78.337%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.855ns = ( 14.855 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.274ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.669     9.259    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[7]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  
+    W5                                                0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         1.514    14.855    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y13          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[7]/C
+                         clock pessimism              0.274    15.129    
+                         clock uncertainty           -0.035    15.094    
+    SLICE_X2Y13          FDRE (Setup_fdre_C_R)       -0.524    14.570    leftLoop/brightnessControllerB/clk_count_reg[7]
+  -------------------------------------------------------------------
+                         required time                         14.570    
+                         arrival time                          -9.259    
+  -------------------------------------------------------------------
+                         slack                                  5.311    
+
+Slack (MET) :             5.330ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[20]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        4.110ns  (logic 0.890ns (21.652%)  route 3.220ns (78.348%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.296ns
+    Destination Clock Delay (DCD):    4.852ns = ( 14.852 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.298ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -435,16 +500,18 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.496     8.734    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[0]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.671     9.261    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[20]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -453,31 +520,31 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.440    14.781    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[0]/C
-                         clock pessimism              0.296    15.077    
-                         clock uncertainty           -0.035    15.042    
-    SLICE_X10Y29         FDCE (Setup_fdce_C_CE)      -0.169    14.873    rightLoop/brightnessControllerB/off_count_reg[0]
+                         net (fo=283, routed)         1.511    14.852    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[20]/C
+                         clock pessimism              0.298    15.150    
+                         clock uncertainty           -0.035    15.115    
+    SLICE_X2Y17          FDRE (Setup_fdre_C_R)       -0.524    14.591    leftLoop/brightnessControllerB/clk_count_reg[20]
   -------------------------------------------------------------------
-                         required time                         14.873    
-                         arrival time                          -8.734    
+                         required time                         14.591    
+                         arrival time                          -9.261    
   -------------------------------------------------------------------
-                         slack                                  6.139    
+                         slack                                  5.330    
 
-Slack (MET) :             6.139ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[1]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.330ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[21]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.656ns  (logic 1.133ns (30.987%)  route 2.523ns (69.013%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
+  Data Path Delay:        4.110ns  (logic 0.890ns (21.652%)  route 3.220ns (78.348%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.296ns
+    Destination Clock Delay (DCD):    4.852ns = ( 14.852 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.298ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -492,16 +559,18 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.496     8.734    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[1]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.671     9.261    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -510,31 +579,31 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.440    14.781    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[1]/C
-                         clock pessimism              0.296    15.077    
-                         clock uncertainty           -0.035    15.042    
-    SLICE_X10Y29         FDCE (Setup_fdce_C_CE)      -0.169    14.873    rightLoop/brightnessControllerB/off_count_reg[1]
+                         net (fo=283, routed)         1.511    14.852    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                         clock pessimism              0.298    15.150    
+                         clock uncertainty           -0.035    15.115    
+    SLICE_X2Y17          FDRE (Setup_fdre_C_R)       -0.524    14.591    leftLoop/brightnessControllerB/clk_count_reg[21]
   -------------------------------------------------------------------
-                         required time                         14.873    
-                         arrival time                          -8.734    
+                         required time                         14.591    
+                         arrival time                          -9.261    
   -------------------------------------------------------------------
-                         slack                                  6.139    
+                         slack                                  5.330    
 
-Slack (MET) :             6.139ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[2]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.330ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[22]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.656ns  (logic 1.133ns (30.987%)  route 2.523ns (69.013%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
+  Data Path Delay:        4.110ns  (logic 0.890ns (21.652%)  route 3.220ns (78.348%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.296ns
+    Destination Clock Delay (DCD):    4.852ns = ( 14.852 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.298ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -549,16 +618,18 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.496     8.734    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[2]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.671     9.261    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[22]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -567,31 +638,31 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.440    14.781    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[2]/C
-                         clock pessimism              0.296    15.077    
-                         clock uncertainty           -0.035    15.042    
-    SLICE_X10Y29         FDCE (Setup_fdce_C_CE)      -0.169    14.873    rightLoop/brightnessControllerB/off_count_reg[2]
+                         net (fo=283, routed)         1.511    14.852    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[22]/C
+                         clock pessimism              0.298    15.150    
+                         clock uncertainty           -0.035    15.115    
+    SLICE_X2Y17          FDRE (Setup_fdre_C_R)       -0.524    14.591    leftLoop/brightnessControllerB/clk_count_reg[22]
   -------------------------------------------------------------------
-                         required time                         14.873    
-                         arrival time                          -8.734    
+                         required time                         14.591    
+                         arrival time                          -9.261    
   -------------------------------------------------------------------
-                         slack                                  6.139    
+                         slack                                  5.330    
 
-Slack (MET) :             6.139ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[7]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.330ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[23]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.656ns  (logic 1.133ns (30.987%)  route 2.523ns (69.013%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
+  Data Path Delay:        4.110ns  (logic 0.890ns (21.652%)  route 3.220ns (78.348%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.296ns
+    Destination Clock Delay (DCD):    4.852ns = ( 14.852 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.298ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -606,16 +677,18 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.496     8.734    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.671     9.261    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[23]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -624,31 +697,31 @@ Slack (MET) :             6.139ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.440    14.781    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
-                         clock pessimism              0.296    15.077    
-                         clock uncertainty           -0.035    15.042    
-    SLICE_X10Y29         FDCE (Setup_fdce_C_CE)      -0.169    14.873    rightLoop/brightnessControllerB/off_count_reg[7]
+                         net (fo=283, routed)         1.511    14.852    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[23]/C
+                         clock pessimism              0.298    15.150    
+                         clock uncertainty           -0.035    15.115    
+    SLICE_X2Y17          FDRE (Setup_fdre_C_R)       -0.524    14.591    leftLoop/brightnessControllerB/clk_count_reg[23]
   -------------------------------------------------------------------
-                         required time                         14.873    
-                         arrival time                          -8.734    
+                         required time                         14.591    
+                         arrival time                          -9.261    
   -------------------------------------------------------------------
-                         slack                                  6.139    
+                         slack                                  5.330    
 
-Slack (MET) :             6.189ns  (required time - arrival time)
-  Source:                 rightLoop/brightnessControllerB/off_count_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[4]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.388ns  (required time - arrival time)
+  Source:                 leftLoop/brightnessControllerB/clk_count_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerB/clk_count_reg[24]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.546ns  (logic 1.133ns (31.949%)  route 2.413ns (68.051%))
-  Logic Levels:           2  (LUT2=1 LUT6=1)
-  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.780ns = ( 14.780 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.077ns
-    Clock Pessimism Removal (CPR):    0.273ns
+  Data Path Delay:        4.027ns  (logic 0.890ns (22.103%)  route 3.137ns (77.897%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.850ns = ( 14.850 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.150ns
+    Clock Pessimism Removal (CPR):    0.274ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -663,16 +736,18 @@ Slack (MET) :             6.189ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.556     5.077    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[7]/C
+                         net (fo=283, routed)         1.629     5.150    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y17          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.478     5.555 f  rightLoop/brightnessControllerB/off_count_reg[7]/Q
-                         net (fo=10, routed)          1.176     6.732    rightLoop/brightnessControllerB/off_count_reg_n_0_[7]
-    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.324     7.056 r  rightLoop/brightnessControllerB/off_count[7]_i_4__3/O
-                         net (fo=2, routed)           0.851     7.907    rightLoop/brightnessControllerB/off_count[7]_i_4__3_n_0
-    SLICE_X8Y29          LUT6 (Prop_lut6_I4_O)        0.331     8.238 r  rightLoop/brightnessControllerB/off_count[7]_i_1__3/O
-                         net (fo=8, routed)           0.386     8.624    rightLoop/brightnessControllerB/off_count[7]_i_1__3_n_0
-    SLICE_X11Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[4]/CE
+    SLICE_X2Y17          FDRE (Prop_fdre_C_Q)         0.518     5.668 r  leftLoop/brightnessControllerB/clk_count_reg[21]/Q
+                         net (fo=5, routed)           1.427     7.096    leftLoop/brightnessControllerB/clk_count_reg[21]
+    SLICE_X1Y17          LUT6 (Prop_lut6_I3_O)        0.124     7.220 r  leftLoop/brightnessControllerB/clk_count[0]_i_7__0/O
+                         net (fo=1, routed)           0.586     7.806    leftLoop/brightnessControllerB/clk_count[0]_i_7__0_n_0
+    SLICE_X1Y13          LUT6 (Prop_lut6_I1_O)        0.124     7.930 r  leftLoop/brightnessControllerB/clk_count[0]_i_4__0/O
+                         net (fo=1, routed)           0.536     8.466    leftLoop/brightnessControllerB/clk_count[0]_i_4__0_n_0
+    SLICE_X3Y13          LUT3 (Prop_lut3_I0_O)        0.124     8.590 r  leftLoop/brightnessControllerB/clk_count[0]_i_1__0/O
+                         net (fo=25, routed)          0.587     9.177    leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0
+    SLICE_X2Y18          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[24]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -681,30 +756,30 @@ Slack (MET) :             6.189ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.439    14.780    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X11Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[4]/C
-                         clock pessimism              0.273    15.053    
-                         clock uncertainty           -0.035    15.018    
-    SLICE_X11Y28         FDCE (Setup_fdce_C_CE)      -0.205    14.813    rightLoop/brightnessControllerB/off_count_reg[4]
+                         net (fo=283, routed)         1.509    14.850    leftLoop/brightnessControllerB/CLK
+    SLICE_X2Y18          FDRE                                         r  leftLoop/brightnessControllerB/clk_count_reg[24]/C
+                         clock pessimism              0.274    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X2Y18          FDRE (Setup_fdre_C_R)       -0.524    14.565    leftLoop/brightnessControllerB/clk_count_reg[24]
   -------------------------------------------------------------------
-                         required time                         14.813    
-                         arrival time                          -8.624    
+                         required time                         14.565    
+                         arrival time                          -9.177    
   -------------------------------------------------------------------
-                         slack                                  6.189    
+                         slack                                  5.388    
 
-Slack (MET) :             6.492ns  (required time - arrival time)
-  Source:                 leftLoop/brightnessControllerB/off_count_reg[0]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            leftLoop/brightnessControllerB/off_range_reg[0]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.401ns  (required time - arrival time)
+  Source:                 rightLoop/brightnessControllerC/clk_count_reg[20]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            rightLoop/brightnessControllerC/clk_count_reg[24]/R
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.242ns  (logic 0.766ns (23.625%)  route 2.476ns (76.375%))
+  Data Path Delay:        4.014ns  (logic 0.766ns (19.084%)  route 3.248ns (80.916%))
   Logic Levels:           2  (LUT6=2)
-  Clock Path Skew:        -0.025ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.847ns = ( 14.847 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.145ns
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.853ns = ( 14.853 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.152ns
     Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -720,73 +795,16 @@ Slack (MET) :             6.492ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.624     5.145    leftLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X6Y18          FDCE                                         r  leftLoop/brightnessControllerB/off_count_reg[0]/C
+                         net (fo=283, routed)         1.631     5.152    rightLoop/brightnessControllerC/CLK
+    SLICE_X6Y12          FDRE                                         r  rightLoop/brightnessControllerC/clk_count_reg[20]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y18          FDCE (Prop_fdce_C_Q)         0.518     5.663 r  leftLoop/brightnessControllerB/off_count_reg[0]/Q
-                         net (fo=7, routed)           0.990     6.654    leftLoop/brightnessControllerB/off_count_reg_n_0_[0]
-    SLICE_X5Y17          LUT6 (Prop_lut6_I3_O)        0.124     6.778 f  leftLoop/brightnessControllerB/off_count[7]_i_3__0/O
-                         net (fo=10, routed)          1.144     7.921    leftLoop/brightnessControllerB/off_count[7]_i_3__0_n_0
-    SLICE_X6Y19          LUT6 (Prop_lut6_I2_O)        0.124     8.045 r  leftLoop/brightnessControllerB/off_range[7]_i_1__0/O
-                         net (fo=8, routed)           0.342     8.388    leftLoop/brightnessControllerB/off_range[7]_i_1__0_n_0
-    SLICE_X4Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[0]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk rise edge)       10.000    10.000 r  
-    W5                                                0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.506    14.847    leftLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X4Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[0]/C
-                         clock pessimism              0.273    15.120    
-                         clock uncertainty           -0.035    15.085    
-    SLICE_X4Y19          FDCE (Setup_fdce_C_CE)      -0.205    14.880    leftLoop/brightnessControllerB/off_range_reg[0]
-  -------------------------------------------------------------------
-                         required time                         14.880    
-                         arrival time                          -8.388    
-  -------------------------------------------------------------------
-                         slack                                  6.492    
-
-Slack (MET) :             6.492ns  (required time - arrival time)
-  Source:                 leftLoop/brightnessControllerB/off_count_reg[0]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            leftLoop/brightnessControllerB/off_range_reg[1]/CE
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
-  Data Path Delay:        3.242ns  (logic 0.766ns (23.625%)  route 2.476ns (76.375%))
-  Logic Levels:           2  (LUT6=2)
-  Clock Path Skew:        -0.025ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.847ns = ( 14.847 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.145ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.624     5.145    leftLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X6Y18          FDCE                                         r  leftLoop/brightnessControllerB/off_count_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y18          FDCE (Prop_fdce_C_Q)         0.518     5.663 r  leftLoop/brightnessControllerB/off_count_reg[0]/Q
-                         net (fo=7, routed)           0.990     6.654    leftLoop/brightnessControllerB/off_count_reg_n_0_[0]
-    SLICE_X5Y17          LUT6 (Prop_lut6_I3_O)        0.124     6.778 f  leftLoop/brightnessControllerB/off_count[7]_i_3__0/O
-                         net (fo=10, routed)          1.144     7.921    leftLoop/brightnessControllerB/off_count[7]_i_3__0_n_0
-    SLICE_X6Y19          LUT6 (Prop_lut6_I2_O)        0.124     8.045 r  leftLoop/brightnessControllerB/off_range[7]_i_1__0/O
-                         net (fo=8, routed)           0.342     8.388    leftLoop/brightnessControllerB/off_range[7]_i_1__0_n_0
-    SLICE_X4Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[1]/CE
+    SLICE_X6Y12          FDRE (Prop_fdre_C_Q)         0.518     5.670 r  rightLoop/brightnessControllerC/clk_count_reg[20]/Q
+                         net (fo=3, routed)           1.576     7.246    rightLoop/brightnessControllerC/clk_count_reg[20]
+    SLICE_X4Y10          LUT6 (Prop_lut6_I2_O)        0.124     7.370 r  rightLoop/brightnessControllerC/clk_count[0]_i_7__4/O
+                         net (fo=1, routed)           0.790     8.161    rightLoop/brightnessControllerC/clk_count[0]_i_7__4_n_0
+    SLICE_X7Y10          LUT6 (Prop_lut6_I3_O)        0.124     8.285 r  rightLoop/brightnessControllerC/clk_count[0]_i_1__4/O
+                         net (fo=25, routed)          0.881     9.166    rightLoop/brightnessControllerC/clk_count[0]_i_1__4_n_0
+    SLICE_X6Y13          FDRE                                         r  rightLoop/brightnessControllerC/clk_count_reg[24]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)       10.000    10.000 r  
@@ -795,16 +813,16 @@ Slack (MET) :             6.492ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         1.506    14.847    leftLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X4Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[1]/C
-                         clock pessimism              0.273    15.120    
-                         clock uncertainty           -0.035    15.085    
-    SLICE_X4Y19          FDCE (Setup_fdce_C_CE)      -0.205    14.880    leftLoop/brightnessControllerB/off_range_reg[1]
+                         net (fo=283, routed)         1.512    14.853    rightLoop/brightnessControllerC/CLK
+    SLICE_X6Y13          FDRE                                         r  rightLoop/brightnessControllerC/clk_count_reg[24]/C
+                         clock pessimism              0.273    15.126    
+                         clock uncertainty           -0.035    15.091    
+    SLICE_X6Y13          FDRE (Setup_fdre_C_R)       -0.524    14.567    rightLoop/brightnessControllerC/clk_count_reg[24]
   -------------------------------------------------------------------
-                         required time                         14.880    
-                         arrival time                          -8.388    
+                         required time                         14.567    
+                         arrival time                          -9.166    
   -------------------------------------------------------------------
-                         slack                                  6.492    
+                         slack                                  5.401    
 
 
 
@@ -812,117 +830,19 @@ Slack (MET) :             6.492ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.129ns  (arrival time - required time)
-  Source:                 leftLoop/brightnessControllerA/off_range_reg[7]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            leftLoop/brightnessControllerA/off_count_reg[7]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.178ns  (arrival time - required time)
+  Source:                 rightLoop/brightnessControllerB/led_count_reg[10]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            rightLoop/brightnessControllerB/LED_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.263ns  (logic 0.186ns (70.686%)  route 0.077ns (29.314%))
+  Data Path Delay:        0.282ns  (logic 0.209ns (74.086%)  route 0.073ns (25.914%))
   Logic Levels:           1  (LUT6=1)
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.979ns
-    Source Clock Delay      (SCD):    1.466ns
-    Clock Pessimism Removal (CPR):    0.500ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.583     1.466    leftLoop/brightnessControllerA/clk_IBUF_BUFG
-    SLICE_X7Y21          FDCE                                         r  leftLoop/brightnessControllerA/off_range_reg[7]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y21          FDCE (Prop_fdce_C_Q)         0.141     1.607 r  leftLoop/brightnessControllerA/off_range_reg[7]/Q
-                         net (fo=4, routed)           0.077     1.684    leftLoop/brightnessControllerA/off_range_reg__0[7]
-    SLICE_X6Y21          LUT6 (Prop_lut6_I2_O)        0.045     1.729 r  leftLoop/brightnessControllerA/off_count[7]_i_2/O
-                         net (fo=1, routed)           0.000     1.729    leftLoop/brightnessControllerA/p_1_in[7]
-    SLICE_X6Y21          FDCE                                         r  leftLoop/brightnessControllerA/off_count_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.852     1.979    leftLoop/brightnessControllerA/clk_IBUF_BUFG
-    SLICE_X6Y21          FDCE                                         r  leftLoop/brightnessControllerA/off_count_reg[7]/C
-                         clock pessimism             -0.500     1.479    
-    SLICE_X6Y21          FDCE (Hold_fdce_C_D)         0.121     1.600    leftLoop/brightnessControllerA/off_count_reg[7]
-  -------------------------------------------------------------------
-                         required time                         -1.600    
-                         arrival time                           1.729    
-  -------------------------------------------------------------------
-                         slack                                  0.129    
-
-Slack (MET) :             0.143ns  (arrival time - required time)
-  Source:                 rightLoop/brightnessControllerA/off_range_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerA/off_range_reg[4]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.276ns  (logic 0.186ns (67.282%)  route 0.090ns (32.718%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.980ns
-    Source Clock Delay      (SCD):    1.467ns
-    Clock Pessimism Removal (CPR):    0.500ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.584     1.467    rightLoop/brightnessControllerA/clk_IBUF_BUFG
-    SLICE_X7Y29          FDCE                                         r  rightLoop/brightnessControllerA/off_range_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y29          FDCE (Prop_fdce_C_Q)         0.141     1.608 r  rightLoop/brightnessControllerA/off_range_reg[3]/Q
-                         net (fo=4, routed)           0.090     1.699    rightLoop/brightnessControllerA/off_range_reg__0[3]
-    SLICE_X6Y29          LUT6 (Prop_lut6_I0_O)        0.045     1.744 r  rightLoop/brightnessControllerA/off_range[4]_i_1__2/O
-                         net (fo=1, routed)           0.000     1.744    rightLoop/brightnessControllerA/p_0_in__2[4]
-    SLICE_X6Y29          FDCE                                         r  rightLoop/brightnessControllerA/off_range_reg[4]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.853     1.980    rightLoop/brightnessControllerA/clk_IBUF_BUFG
-    SLICE_X6Y29          FDCE                                         r  rightLoop/brightnessControllerA/off_range_reg[4]/C
-                         clock pessimism             -0.500     1.480    
-    SLICE_X6Y29          FDCE (Hold_fdce_C_D)         0.120     1.600    rightLoop/brightnessControllerA/off_range_reg[4]
-  -------------------------------------------------------------------
-                         required time                         -1.600    
-                         arrival time                           1.744    
-  -------------------------------------------------------------------
-                         slack                                  0.143    
-
-Slack (MET) :             0.155ns  (arrival time - required time)
-  Source:                 rightLoop/brightnessControllerB/off_range_reg[4]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_range_reg[7]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.288ns  (logic 0.186ns (64.670%)  route 0.102ns (35.330%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.952ns
-    Source Clock Delay      (SCD):    1.440ns
+    Destination Clock Delay (DCD):    1.957ns
+    Source Clock Delay      (SCD):    1.445ns
     Clock Pessimism Removal (CPR):    0.499ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -933,63 +853,14 @@ Slack (MET) :             0.155ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.557     1.440    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X9Y29          FDCE                                         r  rightLoop/brightnessControllerB/off_range_reg[4]/C
+                         net (fo=283, routed)         0.562     1.445    rightLoop/brightnessControllerB/CLK
+    SLICE_X12Y15         FDRE                                         r  rightLoop/brightnessControllerB/led_count_reg[10]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X9Y29          FDCE (Prop_fdce_C_Q)         0.141     1.581 r  rightLoop/brightnessControllerB/off_range_reg[4]/Q
-                         net (fo=7, routed)           0.102     1.683    rightLoop/brightnessControllerB/off_range_reg__0[4]
-    SLICE_X8Y29          LUT6 (Prop_lut6_I3_O)        0.045     1.728 r  rightLoop/brightnessControllerB/off_range[7]_i_2__3/O
-                         net (fo=1, routed)           0.000     1.728    rightLoop/brightnessControllerB/p_0_in__3[7]
-    SLICE_X8Y29          FDCE                                         r  rightLoop/brightnessControllerB/off_range_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.825     1.952    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X8Y29          FDCE                                         r  rightLoop/brightnessControllerB/off_range_reg[7]/C
-                         clock pessimism             -0.499     1.453    
-    SLICE_X8Y29          FDCE (Hold_fdce_C_D)         0.120     1.573    rightLoop/brightnessControllerB/off_range_reg[7]
-  -------------------------------------------------------------------
-                         required time                         -1.573    
-                         arrival time                           1.728    
-  -------------------------------------------------------------------
-                         slack                                  0.155    
-
-Slack (MET) :             0.167ns  (arrival time - required time)
-  Source:                 leftLoop/brightnessControllerA/off_range_reg[6]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            leftLoop/brightnessControllerA/off_count_reg[6]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.301ns  (logic 0.186ns (61.717%)  route 0.115ns (38.283%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.979ns
-    Source Clock Delay      (SCD):    1.466ns
-    Clock Pessimism Removal (CPR):    0.500ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.583     1.466    leftLoop/brightnessControllerA/clk_IBUF_BUFG
-    SLICE_X7Y21          FDCE                                         r  leftLoop/brightnessControllerA/off_range_reg[6]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y21          FDCE (Prop_fdce_C_Q)         0.141     1.607 r  leftLoop/brightnessControllerA/off_range_reg[6]/Q
-                         net (fo=5, routed)           0.115     1.723    leftLoop/brightnessControllerA/off_range_reg__0[6]
-    SLICE_X6Y21          LUT6 (Prop_lut6_I5_O)        0.045     1.768 r  leftLoop/brightnessControllerA/off_count[6]_i_1/O
-                         net (fo=1, routed)           0.000     1.768    leftLoop/brightnessControllerA/p_1_in[6]
-    SLICE_X6Y21          FDCE                                         r  leftLoop/brightnessControllerA/off_count_reg[6]/D
+    SLICE_X12Y15         FDRE (Prop_fdre_C_Q)         0.164     1.609 r  rightLoop/brightnessControllerB/led_count_reg[10]/Q
+                         net (fo=3, routed)           0.073     1.682    rightLoop/brightnessControllerB/led_count_reg[10]
+    SLICE_X13Y15         LUT6 (Prop_lut6_I4_O)        0.045     1.727 r  rightLoop/brightnessControllerB/LED_i_2/O
+                         net (fo=1, routed)           0.000     1.727    rightLoop/brightnessControllerB/LED_i_2_n_0
+    SLICE_X13Y15         FDRE                                         r  rightLoop/brightnessControllerB/LED_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -998,126 +869,28 @@ Slack (MET) :             0.167ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.852     1.979    leftLoop/brightnessControllerA/clk_IBUF_BUFG
-    SLICE_X6Y21          FDCE                                         r  leftLoop/brightnessControllerA/off_count_reg[6]/C
-                         clock pessimism             -0.500     1.479    
-    SLICE_X6Y21          FDCE (Hold_fdce_C_D)         0.121     1.600    leftLoop/brightnessControllerA/off_count_reg[6]
+                         net (fo=283, routed)         0.830     1.957    rightLoop/brightnessControllerB/CLK
+    SLICE_X13Y15         FDRE                                         r  rightLoop/brightnessControllerB/LED_reg/C
+                         clock pessimism             -0.499     1.458    
+    SLICE_X13Y15         FDRE (Hold_fdre_C_D)         0.091     1.549    rightLoop/brightnessControllerB/LED_reg
   -------------------------------------------------------------------
-                         required time                         -1.600    
-                         arrival time                           1.768    
+                         required time                         -1.549    
+                         arrival time                           1.727    
   -------------------------------------------------------------------
-                         slack                                  0.167    
+                         slack                                  0.178    
 
-Slack (MET) :             0.170ns  (arrival time - required time)
-  Source:                 leftLoop/brightnessControllerB/off_range_reg[0]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            leftLoop/brightnessControllerB/off_range_reg[4]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.188ns  (arrival time - required time)
+  Source:                 leftLoop/brightnessControllerA/led_count_reg[9]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerA/LED_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.274ns  (logic 0.186ns (67.845%)  route 0.088ns (32.155%))
+  Data Path Delay:        0.324ns  (logic 0.186ns (57.449%)  route 0.138ns (42.551%))
   Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.981ns
-    Source Clock Delay      (SCD):    1.468ns
-    Clock Pessimism Removal (CPR):    0.500ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.585     1.468    leftLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X4Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X4Y19          FDCE (Prop_fdce_C_Q)         0.141     1.609 r  leftLoop/brightnessControllerB/off_range_reg[0]/Q
-                         net (fo=7, routed)           0.088     1.697    leftLoop/brightnessControllerB/off_range_reg__0[0]
-    SLICE_X5Y19          LUT6 (Prop_lut6_I1_O)        0.045     1.742 r  leftLoop/brightnessControllerB/off_range[4]_i_1__0/O
-                         net (fo=1, routed)           0.000     1.742    leftLoop/brightnessControllerB/p_0_in__0[4]
-    SLICE_X5Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[4]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.854     1.981    leftLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X5Y19          FDCE                                         r  leftLoop/brightnessControllerB/off_range_reg[4]/C
-                         clock pessimism             -0.500     1.481    
-    SLICE_X5Y19          FDCE (Hold_fdce_C_D)         0.091     1.572    leftLoop/brightnessControllerB/off_range_reg[4]
-  -------------------------------------------------------------------
-                         required time                         -1.572    
-                         arrival time                           1.742    
-  -------------------------------------------------------------------
-                         slack                                  0.170    
-
-Slack (MET) :             0.180ns  (arrival time - required time)
-  Source:                 rightLoop/brightnessControllerB/off_range_reg[2]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[2]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.335ns  (logic 0.186ns (55.490%)  route 0.149ns (44.510%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.034ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.952ns
-    Source Clock Delay      (SCD):    1.440ns
-    Clock Pessimism Removal (CPR):    0.478ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.557     1.440    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X9Y29          FDCE                                         r  rightLoop/brightnessControllerB/off_range_reg[2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X9Y29          FDCE (Prop_fdce_C_Q)         0.141     1.581 r  rightLoop/brightnessControllerB/off_range_reg[2]/Q
-                         net (fo=6, routed)           0.149     1.730    rightLoop/brightnessControllerB/off_range_reg__0[2]
-    SLICE_X10Y29         LUT6 (Prop_lut6_I5_O)        0.045     1.775 r  rightLoop/brightnessControllerB/off_count[2]_i_1__3/O
-                         net (fo=1, routed)           0.000     1.775    rightLoop/brightnessControllerB/off_count[2]_i_1__3_n_0
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[2]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk rise edge)        0.000     0.000 r  
-    W5                                                0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.825     1.952    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y29         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[2]/C
-                         clock pessimism             -0.478     1.474    
-    SLICE_X10Y29         FDCE (Hold_fdce_C_D)         0.121     1.595    rightLoop/brightnessControllerB/off_count_reg[2]
-  -------------------------------------------------------------------
-                         required time                         -1.595    
-                         arrival time                           1.775    
-  -------------------------------------------------------------------
-                         slack                                  0.180    
-
-Slack (MET) :             0.190ns  (arrival time - required time)
-  Source:                 leftLoop/brightnessControllerC/off_range_reg[1]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            leftLoop/brightnessControllerC/off_count_reg[1]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.294ns  (logic 0.186ns (63.334%)  route 0.108ns (36.666%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.980ns
+  Clock Path Skew:        0.016ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.983ns
     Source Clock Delay      (SCD):    1.468ns
     Clock Pessimism Removal (CPR):    0.499ns
 
@@ -1129,14 +902,14 @@ Slack (MET) :             0.190ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.585     1.468    leftLoop/brightnessControllerC/clk_IBUF_BUFG
-    SLICE_X0Y22          FDCE                                         r  leftLoop/brightnessControllerC/off_range_reg[1]/C
+                         net (fo=283, routed)         0.585     1.468    leftLoop/brightnessControllerA/CLK
+    SLICE_X3Y21          FDRE                                         r  leftLoop/brightnessControllerA/led_count_reg[9]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y22          FDCE (Prop_fdce_C_Q)         0.141     1.609 r  leftLoop/brightnessControllerC/off_range_reg[1]/Q
-                         net (fo=6, routed)           0.108     1.717    leftLoop/brightnessControllerC/off_range_reg__0[1]
-    SLICE_X1Y22          LUT6 (Prop_lut6_I5_O)        0.045     1.762 r  leftLoop/brightnessControllerC/off_count[1]_i_1__1/O
-                         net (fo=1, routed)           0.000     1.762    leftLoop/brightnessControllerC/off_count[1]_i_1__1_n_0
-    SLICE_X1Y22          FDCE                                         r  leftLoop/brightnessControllerC/off_count_reg[1]/D
+    SLICE_X3Y21          FDRE (Prop_fdre_C_Q)         0.141     1.609 r  leftLoop/brightnessControllerA/led_count_reg[9]/Q
+                         net (fo=3, routed)           0.138     1.747    leftLoop/brightnessControllerA/led_count_reg[9]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I1_O)        0.045     1.792 r  leftLoop/brightnessControllerA/LED_i_3/O
+                         net (fo=1, routed)           0.000     1.792    leftLoop/brightnessControllerA/LED_i_3_n_0
+    SLICE_X2Y19          FDRE                                         r  leftLoop/brightnessControllerA/LED_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -1145,29 +918,29 @@ Slack (MET) :             0.190ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.853     1.980    leftLoop/brightnessControllerC/clk_IBUF_BUFG
-    SLICE_X1Y22          FDCE                                         r  leftLoop/brightnessControllerC/off_count_reg[1]/C
-                         clock pessimism             -0.499     1.481    
-    SLICE_X1Y22          FDCE (Hold_fdce_C_D)         0.091     1.572    leftLoop/brightnessControllerC/off_count_reg[1]
+                         net (fo=283, routed)         0.856     1.983    leftLoop/brightnessControllerA/CLK
+    SLICE_X2Y19          FDRE                                         r  leftLoop/brightnessControllerA/LED_reg/C
+                         clock pessimism             -0.499     1.484    
+    SLICE_X2Y19          FDRE (Hold_fdre_C_D)         0.120     1.604    leftLoop/brightnessControllerA/LED_reg
   -------------------------------------------------------------------
-                         required time                         -1.572    
-                         arrival time                           1.762    
+                         required time                         -1.604    
+                         arrival time                           1.792    
   -------------------------------------------------------------------
-                         slack                                  0.190    
+                         slack                                  0.188    
 
-Slack (MET) :             0.202ns  (arrival time - required time)
-  Source:                 rightLoop/brightnessControllerC/off_range_reg[4]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerC/off_range_reg[5]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.196ns  (arrival time - required time)
+  Source:                 leftLoop/brightnessControllerC/led_count_reg[10]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerC/LED_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.337ns  (logic 0.186ns (55.271%)  route 0.151ns (44.729%))
-  Logic Levels:           1  (LUT5=1)
-  Clock Path Skew:        0.014ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.984ns
-    Source Clock Delay      (SCD):    1.471ns
+  Data Path Delay:        0.302ns  (logic 0.186ns (61.625%)  route 0.116ns (38.375%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.986ns
+    Source Clock Delay      (SCD):    1.472ns
     Clock Pessimism Removal (CPR):    0.499ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1178,14 +951,14 @@ Slack (MET) :             0.202ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.588     1.471    rightLoop/brightnessControllerC/clk_IBUF_BUFG
-    SLICE_X1Y31          FDCE                                         r  rightLoop/brightnessControllerC/off_range_reg[4]/C
+                         net (fo=283, routed)         0.589     1.472    leftLoop/brightnessControllerC/CLK
+    SLICE_X3Y17          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[10]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y31          FDCE (Prop_fdce_C_Q)         0.141     1.612 r  rightLoop/brightnessControllerC/off_range_reg[4]/Q
-                         net (fo=6, routed)           0.151     1.763    rightLoop/brightnessControllerC/off_range_reg__0[4]
-    SLICE_X2Y31          LUT5 (Prop_lut5_I1_O)        0.045     1.808 r  rightLoop/brightnessControllerC/off_range[5]_i_1__4/O
-                         net (fo=1, routed)           0.000     1.808    rightLoop/brightnessControllerC/p_0_in__4[5]
-    SLICE_X2Y31          FDCE                                         r  rightLoop/brightnessControllerC/off_range_reg[5]/D
+    SLICE_X3Y17          FDRE (Prop_fdre_C_Q)         0.141     1.613 r  leftLoop/brightnessControllerC/led_count_reg[10]/Q
+                         net (fo=3, routed)           0.116     1.729    leftLoop/brightnessControllerC/led_count_reg[10]
+    SLICE_X1Y16          LUT6 (Prop_lut6_I4_O)        0.045     1.774 r  leftLoop/brightnessControllerC/LED_i_2/O
+                         net (fo=1, routed)           0.000     1.774    leftLoop/brightnessControllerC/LED_i_2_n_0
+    SLICE_X1Y16          FDRE                                         r  leftLoop/brightnessControllerC/LED_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -1194,30 +967,79 @@ Slack (MET) :             0.202ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.857     1.984    rightLoop/brightnessControllerC/clk_IBUF_BUFG
-    SLICE_X2Y31          FDCE                                         r  rightLoop/brightnessControllerC/off_range_reg[5]/C
-                         clock pessimism             -0.499     1.485    
-    SLICE_X2Y31          FDCE (Hold_fdce_C_D)         0.121     1.606    rightLoop/brightnessControllerC/off_range_reg[5]
+                         net (fo=283, routed)         0.859     1.986    leftLoop/brightnessControllerC/CLK
+    SLICE_X1Y16          FDRE                                         r  leftLoop/brightnessControllerC/LED_reg/C
+                         clock pessimism             -0.499     1.487    
+    SLICE_X1Y16          FDRE (Hold_fdre_C_D)         0.091     1.578    leftLoop/brightnessControllerC/LED_reg
   -------------------------------------------------------------------
-                         required time                         -1.606    
-                         arrival time                           1.808    
+                         required time                         -1.578    
+                         arrival time                           1.774    
   -------------------------------------------------------------------
-                         slack                                  0.202    
+                         slack                                  0.196    
 
-Slack (MET) :             0.202ns  (arrival time - required time)
-  Source:                 rightLoop/brightnessControllerC/off_range_reg[4]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerC/off_range_reg[7]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.228ns  (arrival time - required time)
+  Source:                 rightLoop/brightnessControllerA/led_count_reg[10]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            rightLoop/brightnessControllerA/LED_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.337ns  (logic 0.186ns (55.271%)  route 0.151ns (44.729%))
+  Data Path Delay:        0.334ns  (logic 0.209ns (62.555%)  route 0.125ns (37.445%))
   Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.014ns (DCD - SCD - CPR)
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.953ns
+    Source Clock Delay      (SCD):    1.440ns
+    Clock Pessimism Removal (CPR):    0.498ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.557     1.440    rightLoop/brightnessControllerA/CLK
+    SLICE_X8Y20          FDRE                                         r  rightLoop/brightnessControllerA/led_count_reg[10]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y20          FDRE (Prop_fdre_C_Q)         0.164     1.604 r  rightLoop/brightnessControllerA/led_count_reg[10]/Q
+                         net (fo=3, routed)           0.125     1.729    rightLoop/brightnessControllerA/led_count_reg[10]
+    SLICE_X9Y19          LUT6 (Prop_lut6_I4_O)        0.045     1.774 r  rightLoop/brightnessControllerA/LED_i_3/O
+                         net (fo=1, routed)           0.000     1.774    rightLoop/brightnessControllerA/LED_i_3_n_0
+    SLICE_X9Y19          FDRE                                         r  rightLoop/brightnessControllerA/LED_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.826     1.953    rightLoop/brightnessControllerA/CLK
+    SLICE_X9Y19          FDRE                                         r  rightLoop/brightnessControllerA/LED_reg/C
+                         clock pessimism             -0.498     1.455    
+    SLICE_X9Y19          FDRE (Hold_fdre_C_D)         0.091     1.546    rightLoop/brightnessControllerA/LED_reg
+  -------------------------------------------------------------------
+                         required time                         -1.546    
+                         arrival time                           1.774    
+  -------------------------------------------------------------------
+                         slack                                  0.228    
+
+Slack (MET) :             0.246ns  (arrival time - required time)
+  Source:                 leftLoop/brightnessControllerC/ended_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerC/ended_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.337ns  (logic 0.186ns (55.246%)  route 0.151ns (44.754%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    1.984ns
     Source Clock Delay      (SCD):    1.471ns
-    Clock Pessimism Removal (CPR):    0.499ns
+    Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1227,14 +1049,14 @@ Slack (MET) :             0.202ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.588     1.471    rightLoop/brightnessControllerC/clk_IBUF_BUFG
-    SLICE_X1Y31          FDCE                                         r  rightLoop/brightnessControllerC/off_range_reg[4]/C
+                         net (fo=283, routed)         0.588     1.471    leftLoop/brightnessControllerC/CLK
+    SLICE_X5Y16          FDRE                                         r  leftLoop/brightnessControllerC/ended_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y31          FDCE (Prop_fdce_C_Q)         0.141     1.612 r  rightLoop/brightnessControllerC/off_range_reg[4]/Q
-                         net (fo=6, routed)           0.151     1.763    rightLoop/brightnessControllerC/off_range_reg__0[4]
-    SLICE_X2Y31          LUT6 (Prop_lut6_I2_O)        0.045     1.808 r  rightLoop/brightnessControllerC/off_range[7]_i_2__4/O
-                         net (fo=1, routed)           0.000     1.808    rightLoop/brightnessControllerC/p_0_in__4[7]
-    SLICE_X2Y31          FDCE                                         r  rightLoop/brightnessControllerC/off_range_reg[7]/D
+    SLICE_X5Y16          FDRE (Prop_fdre_C_Q)         0.141     1.612 r  leftLoop/brightnessControllerC/ended_reg/Q
+                         net (fo=6, routed)           0.151     1.763    leftLoop/brightnessControllerC/ended_reg_n_0
+    SLICE_X5Y16          LUT6 (Prop_lut6_I0_O)        0.045     1.808 r  leftLoop/brightnessControllerC/ended_i_1__1/O
+                         net (fo=1, routed)           0.000     1.808    leftLoop/brightnessControllerC/ended_i_1__1_n_0
+    SLICE_X5Y16          FDRE                                         r  leftLoop/brightnessControllerC/ended_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -1243,30 +1065,30 @@ Slack (MET) :             0.202ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.857     1.984    rightLoop/brightnessControllerC/clk_IBUF_BUFG
-    SLICE_X2Y31          FDCE                                         r  rightLoop/brightnessControllerC/off_range_reg[7]/C
-                         clock pessimism             -0.499     1.485    
-    SLICE_X2Y31          FDCE (Hold_fdce_C_D)         0.121     1.606    rightLoop/brightnessControllerC/off_range_reg[7]
+                         net (fo=283, routed)         0.857     1.984    leftLoop/brightnessControllerC/CLK
+    SLICE_X5Y16          FDRE                                         r  leftLoop/brightnessControllerC/ended_reg/C
+                         clock pessimism             -0.513     1.471    
+    SLICE_X5Y16          FDRE (Hold_fdre_C_D)         0.091     1.562    leftLoop/brightnessControllerC/ended_reg
   -------------------------------------------------------------------
-                         required time                         -1.606    
+                         required time                         -1.562    
                          arrival time                           1.808    
   -------------------------------------------------------------------
-                         slack                                  0.202    
+                         slack                                  0.246    
 
-Slack (MET) :             0.216ns  (arrival time - required time)
-  Source:                 rightLoop/brightnessControllerB/off_range_reg[5]/C
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            rightLoop/brightnessControllerB/off_count_reg[5]/D
-                            (rising edge-triggered cell FDCE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 leftLoop/brightnessControllerC/led_count_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerC/led_count_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
-  Data Path Delay:        0.371ns  (logic 0.186ns (50.167%)  route 0.185ns (49.833%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.034ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.951ns
-    Source Clock Delay      (SCD):    1.439ns
-    Clock Pessimism Removal (CPR):    0.478ns
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.986ns
+    Source Clock Delay      (SCD):    1.473ns
+    Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1276,14 +1098,15 @@ Slack (MET) :             0.216ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.556     1.439    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X9Y28          FDCE                                         r  rightLoop/brightnessControllerB/off_range_reg[5]/C
+                         net (fo=283, routed)         0.590     1.473    leftLoop/brightnessControllerC/CLK
+    SLICE_X3Y16          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[7]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X9Y28          FDCE (Prop_fdce_C_Q)         0.141     1.580 r  rightLoop/brightnessControllerB/off_range_reg[5]/Q
-                         net (fo=6, routed)           0.185     1.765    rightLoop/brightnessControllerB/off_range_reg__0[5]
-    SLICE_X10Y28         LUT6 (Prop_lut6_I5_O)        0.045     1.810 r  rightLoop/brightnessControllerB/off_count[5]_i_1__3/O
-                         net (fo=1, routed)           0.000     1.810    rightLoop/brightnessControllerB/off_count[5]_i_1__3_n_0
-    SLICE_X10Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[5]/D
+    SLICE_X3Y16          FDRE (Prop_fdre_C_Q)         0.141     1.614 r  leftLoop/brightnessControllerC/led_count_reg[7]/Q
+                         net (fo=1, routed)           0.108     1.722    leftLoop/brightnessControllerC/led_count_reg_n_0_[7]
+    SLICE_X3Y16          CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.830 r  leftLoop/brightnessControllerC/led_count_reg[4]_i_1__1/O[3]
+                         net (fo=1, routed)           0.000     1.830    leftLoop/brightnessControllerC/led_count_reg[4]_i_1__1_n_4
+    SLICE_X3Y16          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[7]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -1292,15 +1115,215 @@ Slack (MET) :             0.216ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
-                         net (fo=127, routed)         0.824     1.951    rightLoop/brightnessControllerB/clk_IBUF_BUFG
-    SLICE_X10Y28         FDCE                                         r  rightLoop/brightnessControllerB/off_count_reg[5]/C
-                         clock pessimism             -0.478     1.473    
-    SLICE_X10Y28         FDCE (Hold_fdce_C_D)         0.121     1.594    rightLoop/brightnessControllerB/off_count_reg[5]
+                         net (fo=283, routed)         0.859     1.986    leftLoop/brightnessControllerC/CLK
+    SLICE_X3Y16          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[7]/C
+                         clock pessimism             -0.513     1.473    
+    SLICE_X3Y16          FDRE (Hold_fdre_C_D)         0.105     1.578    leftLoop/brightnessControllerC/led_count_reg[7]
   -------------------------------------------------------------------
-                         required time                         -1.594    
-                         arrival time                           1.810    
+                         required time                         -1.578    
+                         arrival time                           1.830    
   -------------------------------------------------------------------
-                         slack                                  0.216    
+                         slack                                  0.252    
+
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 rightLoop/brightnessControllerC/led_count_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            rightLoop/brightnessControllerC/led_count_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.987ns
+    Source Clock Delay      (SCD):    1.473ns
+    Clock Pessimism Removal (CPR):    0.514ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.590     1.473    rightLoop/brightnessControllerC/CLK
+    SLICE_X7Y12          FDRE                                         r  rightLoop/brightnessControllerC/led_count_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y12          FDRE (Prop_fdre_C_Q)         0.141     1.614 r  rightLoop/brightnessControllerC/led_count_reg[7]/Q
+                         net (fo=1, routed)           0.108     1.722    rightLoop/brightnessControllerC/led_count_reg_n_0_[7]
+    SLICE_X7Y12          CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.830 r  rightLoop/brightnessControllerC/led_count_reg[4]_i_1__4/O[3]
+                         net (fo=1, routed)           0.000     1.830    rightLoop/brightnessControllerC/led_count_reg[4]_i_1__4_n_4
+    SLICE_X7Y12          FDRE                                         r  rightLoop/brightnessControllerC/led_count_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.860     1.987    rightLoop/brightnessControllerC/CLK
+    SLICE_X7Y12          FDRE                                         r  rightLoop/brightnessControllerC/led_count_reg[7]/C
+                         clock pessimism             -0.514     1.473    
+    SLICE_X7Y12          FDRE (Hold_fdre_C_D)         0.105     1.578    rightLoop/brightnessControllerC/led_count_reg[7]
+  -------------------------------------------------------------------
+                         required time                         -1.578    
+                         arrival time                           1.830    
+  -------------------------------------------------------------------
+                         slack                                  0.252    
+
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 leftLoop/brightnessControllerA/led_count_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerA/led_count_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.982ns
+    Source Clock Delay      (SCD):    1.469ns
+    Clock Pessimism Removal (CPR):    0.513ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.586     1.469    leftLoop/brightnessControllerA/CLK
+    SLICE_X3Y20          FDRE                                         r  leftLoop/brightnessControllerA/led_count_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDRE (Prop_fdre_C_Q)         0.141     1.610 r  leftLoop/brightnessControllerA/led_count_reg[7]/Q
+                         net (fo=1, routed)           0.108     1.718    leftLoop/brightnessControllerA/led_count_reg_n_0_[7]
+    SLICE_X3Y20          CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.826 r  leftLoop/brightnessControllerA/led_count_reg[4]_i_1/O[3]
+                         net (fo=1, routed)           0.000     1.826    leftLoop/brightnessControllerA/led_count_reg[4]_i_1_n_4
+    SLICE_X3Y20          FDRE                                         r  leftLoop/brightnessControllerA/led_count_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.855     1.982    leftLoop/brightnessControllerA/CLK
+    SLICE_X3Y20          FDRE                                         r  leftLoop/brightnessControllerA/led_count_reg[7]/C
+                         clock pessimism             -0.513     1.469    
+    SLICE_X3Y20          FDRE (Hold_fdre_C_D)         0.105     1.574    leftLoop/brightnessControllerA/led_count_reg[7]
+  -------------------------------------------------------------------
+                         required time                         -1.574    
+                         arrival time                           1.826    
+  -------------------------------------------------------------------
+                         slack                                  0.252    
+
+Slack (MET) :             0.254ns  (arrival time - required time)
+  Source:                 rightLoop/brightnessControllerA/led_count_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            rightLoop/brightnessControllerA/led_count_reg[6]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.388ns  (logic 0.274ns (70.550%)  route 0.114ns (29.450%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.953ns
+    Source Clock Delay      (SCD):    1.441ns
+    Clock Pessimism Removal (CPR):    0.512ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.558     1.441    rightLoop/brightnessControllerA/CLK
+    SLICE_X8Y19          FDRE                                         r  rightLoop/brightnessControllerA/led_count_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y19          FDRE (Prop_fdre_C_Q)         0.164     1.605 r  rightLoop/brightnessControllerA/led_count_reg[6]/Q
+                         net (fo=1, routed)           0.114     1.720    rightLoop/brightnessControllerA/led_count_reg_n_0_[6]
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.110     1.830 r  rightLoop/brightnessControllerA/led_count_reg[4]_i_1__2/O[2]
+                         net (fo=1, routed)           0.000     1.830    rightLoop/brightnessControllerA/led_count_reg[4]_i_1__2_n_5
+    SLICE_X8Y19          FDRE                                         r  rightLoop/brightnessControllerA/led_count_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.826     1.953    rightLoop/brightnessControllerA/CLK
+    SLICE_X8Y19          FDRE                                         r  rightLoop/brightnessControllerA/led_count_reg[6]/C
+                         clock pessimism             -0.512     1.441    
+    SLICE_X8Y19          FDRE (Hold_fdre_C_D)         0.134     1.575    rightLoop/brightnessControllerA/led_count_reg[6]
+  -------------------------------------------------------------------
+                         required time                         -1.575    
+                         arrival time                           1.830    
+  -------------------------------------------------------------------
+                         slack                                  0.254    
+
+Slack (MET) :             0.256ns  (arrival time - required time)
+  Source:                 leftLoop/brightnessControllerC/led_count_reg[4]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            leftLoop/brightnessControllerC/led_count_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.361ns  (logic 0.256ns (70.880%)  route 0.105ns (29.120%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.986ns
+    Source Clock Delay      (SCD):    1.473ns
+    Clock Pessimism Removal (CPR):    0.513ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.590     1.473    leftLoop/brightnessControllerC/CLK
+    SLICE_X3Y16          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y16          FDRE (Prop_fdre_C_Q)         0.141     1.614 r  leftLoop/brightnessControllerC/led_count_reg[4]/Q
+                         net (fo=1, routed)           0.105     1.719    leftLoop/brightnessControllerC/led_count_reg_n_0_[4]
+    SLICE_X3Y16          CARRY4 (Prop_carry4_S[0]_O[0])
+                                                      0.115     1.834 r  leftLoop/brightnessControllerC/led_count_reg[4]_i_1__1/O[0]
+                         net (fo=1, routed)           0.000     1.834    leftLoop/brightnessControllerC/led_count_reg[4]_i_1__1_n_7
+    SLICE_X3Y16          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+    W5                                                0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  clk_IBUF_BUFG_inst/O
+                         net (fo=283, routed)         0.859     1.986    leftLoop/brightnessControllerC/CLK
+    SLICE_X3Y16          FDRE                                         r  leftLoop/brightnessControllerC/led_count_reg[4]/C
+                         clock pessimism             -0.513     1.473    
+    SLICE_X3Y16          FDRE (Hold_fdre_C_D)         0.105     1.578    leftLoop/brightnessControllerC/led_count_reg[4]
+  -------------------------------------------------------------------
+                         required time                         -1.578    
+                         arrival time                           1.834    
+  -------------------------------------------------------------------
+                         slack                                  0.256    
 
 
 
@@ -1315,35 +1338,35 @@ Sources:            { clk }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
 Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y0  clk_IBUF_BUFG_inst/I
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y23    clockDivider/clk_count_reg[0]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y25    clockDivider/clk_count_reg[10]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y25    clockDivider/clk_count_reg[11]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y26    clockDivider/clk_count_reg[12]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y26    clockDivider/clk_count_reg[13]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y26    clockDivider/clk_count_reg[14]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y26    clockDivider/clk_count_reg[15]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y27    clockDivider/clk_count_reg[16]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X3Y27    clockDivider/clk_count_reg[17]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y23    clockDivider/clk_count_reg[0]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y25    clockDivider/clk_count_reg[10]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y25    clockDivider/clk_count_reg[11]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[12]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[13]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[14]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[15]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y27    clockDivider/clk_count_reg[16]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y27    clockDivider/clk_count_reg[17]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y27    clockDivider/clk_count_reg[18]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y23    clockDivider/clk_count_reg[0]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y25    clockDivider/clk_count_reg[10]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y25    clockDivider/clk_count_reg[11]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[12]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[13]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[14]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y26    clockDivider/clk_count_reg[15]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y27    clockDivider/clk_count_reg[16]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y27    clockDivider/clk_count_reg[17]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y27    clockDivider/clk_count_reg[18]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y14    clockDivider/clk_count_reg[0]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y16    clockDivider/clk_count_reg[10]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y16    clockDivider/clk_count_reg[11]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y17    clockDivider/clk_count_reg[12]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y17    clockDivider/clk_count_reg[13]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y17    clockDivider/clk_count_reg[14]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y15    clockDivider/clk_count_reg[5]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y15    clockDivider/clk_count_reg[6]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y15    clockDivider/clk_count_reg[7]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X9Y12    rightLoop/brightnessControllerA/clk_count_reg[1]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X9Y12    rightLoop/brightnessControllerA/clk_count_reg[2]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y13   rightLoop/brightnessControllerB/clk_count_reg[13]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y13   rightLoop/brightnessControllerB/clk_count_reg[14]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y13   rightLoop/brightnessControllerB/clk_count_reg[15]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y14   rightLoop/brightnessControllerB/clk_count_reg[16]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y14   rightLoop/brightnessControllerB/clk_count_reg[17]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y14   rightLoop/brightnessControllerB/clk_count_reg[18]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X10Y14   rightLoop/brightnessControllerB/clk_count_reg[19]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X13Y14   rightLoop/brightnessControllerB/ended_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y14    clockDivider/clk_count_reg[0]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y15    clockDivider/clk_count_reg[5]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y15    clockDivider/clk_count_reg[6]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y15    clockDivider/clk_count_reg[7]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y22    leftLoop/brightnessControllerA/led_count_reg[12]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y22    leftLoop/brightnessControllerA/led_count_reg[13]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y22    leftLoop/brightnessControllerA/led_count_reg[14]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X3Y22    leftLoop/brightnessControllerA/led_count_reg[15]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X2Y15    leftLoop/brightnessControllerB/clk_count_reg[13]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X2Y15    leftLoop/brightnessControllerB/clk_count_reg[14]/C
 
 
 

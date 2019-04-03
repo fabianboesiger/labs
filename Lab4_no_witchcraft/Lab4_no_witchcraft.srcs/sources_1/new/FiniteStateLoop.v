@@ -28,6 +28,10 @@ module FiniteStateLoop(
     reg [1:0] state;
     
     reg is_active;
+           
+    reg LEDA_state;
+    reg LEDB_state;
+    reg LEDC_state;
     
     always @ (posedge active or posedge clock)
         if(active == 1)
@@ -37,16 +41,15 @@ module FiniteStateLoop(
     
     always @ (posedge clock or posedge reset)    
         if(reset == 1)
+        begin
             state <= 2'b00;
+        end
         else
             if(state != 2'b00)
                 state <= state + 1;
             else if(is_active == 1)
                 state <= 2'b01;
-   
-   reg LEDA_state;
-   reg LEDB_state;
-   reg LEDC_state;
+
    
    always @ (*)
         case(state)
