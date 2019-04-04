@@ -1,8 +1,8 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Wed Apr  3 22:47:10 2019
-| Host         : PC_Fabian running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Thu Apr  4 16:47:38 2019
+| Host         : ThinkPad-T470 running 64-bit Ubuntu 18.04.2 LTS
 | Command      : report_control_sets -verbose -file TailLights_control_sets_placed.rpt
 | Design       : TailLights
 | Device       : xc7a35t
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    23 |
-| Unused register locations in slices containing registers |   111 |
+| Number of unique control sets                            |    10 |
+| Unused register locations in slices containing registers |    25 |
 +----------------------------------------------------------+-------+
 
 
@@ -34,10 +34,9 @@ Table of Contents
 +--------+--------------+
 | Fanout | Control Sets |
 +--------+--------------+
-|      1 |            8 |
+|      1 |            2 |
 |      4 |            1 |
-|      6 |            1 |
-|    16+ |           13 |
+|    16+ |            7 |
 +--------+--------------+
 
 
@@ -47,44 +46,31 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               6 |            6 |
-| No           | No                    | Yes                    |               6 |            4 |
-| No           | Yes                   | No                     |              29 |           11 |
+| No           | No                    | No                     |               0 |            0 |
+| No           | No                    | Yes                    |             174 |           50 |
+| No           | Yes                   | No                     |              25 |            7 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             248 |           68 |
+| Yes          | No                    | Yes                    |              96 |           20 |
+| Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+---------------------+---------------------------------------------------------+---------------------------------------------------------+------------------+----------------+
-|     Clock Signal    |                      Enable Signal                      |                     Set/Reset Signal                    | Slice Load Count | Bel Load Count |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------+------------------+----------------+
-|  clk_IBUF_BUFG      |                                                         | leftLoop/brightnessControllerC/LED_i_1__0_n_0           |                1 |              1 |
-|  clk_IBUF_BUFG      |                                                         | rightLoop/brightnessControllerB/LED_i_1__4_n_0          |                1 |              1 |
-|  clk_IBUF_BUFG      |                                                         | rightLoop/brightnessControllerC/LED_i_1__3_n_0          |                1 |              1 |
-|  clk_IBUF_BUFG      |                                                         | leftLoop/brightnessControllerB/LED_i_1__1_n_0           |                1 |              1 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerA/LED_i_2_n_0             | rightLoop/brightnessControllerA/LED_i_1__2_n_0          |                1 |              1 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerA/LED_i_2_n_0              | leftLoop/brightnessControllerA/LED_i_1_n_0              |                1 |              1 |
-|  clockDivider/clock |                                                         | left_IBUF                                               |                1 |              1 |
-|  clockDivider/clock |                                                         | right_IBUF                                              |                1 |              1 |
-|  clockDivider/clock |                                                         | reset_IBUF                                              |                2 |              4 |
-|  clk_IBUF_BUFG      |                                                         |                                                         |                6 |              6 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerC/clk_count                | leftLoop/brightnessControllerC/led_count[0]_i_1__1_n_0  |                4 |             16 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerA/clk_count               | rightLoop/brightnessControllerA/led_count[0]_i_1__2_n_0 |                4 |             16 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerB/clk_count[0]_i_2__5_n_0 | rightLoop/brightnessControllerB/led_count[0]_i_1__3_n_0 |                4 |             16 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerC/clk_count               | rightLoop/brightnessControllerC/led_count[0]_i_1__4_n_0 |                4 |             16 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerA/clk_count                | leftLoop/brightnessControllerA/led_count[0]_i_1_n_0     |                4 |             16 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerB/clk_count[0]_i_2__4_n_0  | leftLoop/brightnessControllerB/led_count[0]_i_1__0_n_0  |                4 |             16 |
-|  clk_IBUF_BUFG      |                                                         | reset_IBUF                                              |                7 |             25 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerC/clk_count                | leftLoop/brightnessControllerC/clk_count[0]_i_1__1_n_0  |                7 |             25 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerA/clk_count               | rightLoop/brightnessControllerA/clk_count[0]_i_1__2_n_0 |                7 |             25 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerB/clk_count[0]_i_2__5_n_0 | rightLoop/brightnessControllerB/clk_count[0]_i_1__3_n_0 |                7 |             25 |
-|  clk_IBUF_BUFG      | rightLoop/brightnessControllerC/clk_count               | rightLoop/brightnessControllerC/clk_count[0]_i_1__4_n_0 |                7 |             25 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerA/clk_count                | leftLoop/brightnessControllerA/clk_count[0]_i_1_n_0     |                7 |             25 |
-|  clk_IBUF_BUFG      | leftLoop/brightnessControllerB/clk_count[0]_i_2__4_n_0  | leftLoop/brightnessControllerB/clk_count[0]_i_1__0_n_0  |                7 |             25 |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------+------------------+----------------+
++---------------------+----------------------------------------------------------+------------------+------------------+----------------+
+|     Clock Signal    |                       Enable Signal                      | Set/Reset Signal | Slice Load Count | Bel Load Count |
++---------------------+----------------------------------------------------------+------------------+------------------+----------------+
+|  clockDivider/clock |                                                          | left_IBUF        |                1 |              1 |
+|  clockDivider/clock |                                                          | right_IBUF       |                1 |              1 |
+|  clockDivider/clock |                                                          | reset_IBUF       |                2 |              4 |
+|  clk_IBUF_BUFG      | leftLoop/brightnessControllerB/led_count[15]_i_1__0_n_0  | reset_IBUF       |                3 |             16 |
+|  clk_IBUF_BUFG      | leftLoop/brightnessControllerA/led_count[15]_i_1_n_0     | reset_IBUF       |                3 |             16 |
+|  clk_IBUF_BUFG      | leftLoop/brightnessControllerC/led_count[15]_i_1__1_n_0  | reset_IBUF       |                4 |             16 |
+|  clk_IBUF_BUFG      | rightLoop/brightnessControllerA/led_count[15]_i_1__2_n_0 | reset_IBUF       |                4 |             16 |
+|  clk_IBUF_BUFG      | rightLoop/brightnessControllerB/led_count[15]_i_1__3_n_0 | reset_IBUF       |                3 |             16 |
+|  clk_IBUF_BUFG      | rightLoop/brightnessControllerC/led_count[15]_i_1__4_n_0 | reset_IBUF       |                3 |             16 |
+|  clk_IBUF_BUFG      |                                                          | reset_IBUF       |               53 |            193 |
++---------------------+----------------------------------------------------------+------------------+------------------+----------------+
 
 

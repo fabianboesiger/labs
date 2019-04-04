@@ -23,17 +23,17 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.cache/wt [current_project]
-set_property parent.project_path C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.xpr [current_project]
+set_property webtalk.parent_dir /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.cache/wt [current_project]
+set_property parent.project_path /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.cache/ip [current_project]
+set_property ip_output_repo /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
-  C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/BrightnessController.v
-  C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/ClockDivider.v
-  C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v
-  C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/TailLights.v
+  /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/BrightnessController.v
+  /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/ClockDivider.v
+  /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v
+  /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/sources_1/new/TailLights.v
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -43,8 +43,8 @@ read_verilog -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/constrs_1/new/TailLights.xdc
-set_property used_in_implementation false [get_files C:/Users/Fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/constrs_1/new/TailLights.xdc]
+read_xdc /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/constrs_1/new/TailLights.xdc
+set_property used_in_implementation false [get_files /home/fabian/git/labs/Lab4_no_witchcraft/Lab4_no_witchcraft.srcs/constrs_1/new/TailLights.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
