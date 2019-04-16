@@ -1,0 +1,9 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sim_1/new/FSM_Test.v,1555445316,verilog,,,,FSM_Test,,,,,,,,
+C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/ClockDivider.v,1554223733,verilog,,C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v,,ClockDivider,,,,,,,,
+C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v,1555445206,verilog,,C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/TailLights.v,,FiniteStateLoop,,,,,,,,
+C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/TailLights.v,1555441845,verilog,,C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sim_1/new/FSM_Test.v,,TailLights,,,,,,,,

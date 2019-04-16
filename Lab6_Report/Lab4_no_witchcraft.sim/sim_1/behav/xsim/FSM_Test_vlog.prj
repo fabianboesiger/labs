@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v" \
+"../../../../Lab4_no_witchcraft.srcs/sources_1/new/TailLights.v" \
+"../../../../Lab4_no_witchcraft.srcs/sim_1/new/FSM_Test.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

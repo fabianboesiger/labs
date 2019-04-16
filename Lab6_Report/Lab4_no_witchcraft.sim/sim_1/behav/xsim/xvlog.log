@@ -1,0 +1,7 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FiniteStateLoop
+WARNING: [VRFC 10-2292] extra semicolon is not allowed here in this dialect. Use SystemVerilog mode [C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/FiniteStateLoop.v:38]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sources_1/new/TailLights.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TailLights
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sim_1/new/FSM_Test.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FSM_Test

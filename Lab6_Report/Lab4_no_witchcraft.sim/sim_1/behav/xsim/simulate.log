@@ -1,0 +1,52 @@
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+Currently in State 00
+Success at     6 ns (test     0): state=00, reset=1, left=0, right=0
+0 0 0 0 0 0
+Reset
+Currently in State 00
+Success at    16 ns (test     1): state=00, reset=0, left=1, right=0
+1 0 0 0 0 0
+Reset
+Currently in State 00
+Currently in State 01
+Success at    36 ns (test     2): state=01, reset=0, left=1, right=0
+1 1 0 0 0 0
+Reset
+Currently in State 00
+Currently in State 01
+Currently in State 10
+Success at    66 ns (test     3): state=10, reset=0, left=1, right=0
+1 1 1 0 0 0
+Reset
+Currently in State 00
+Currently in State 01
+Currently in State 10
+Currently in State 11
+Success at   106 ns (test     4): state=11, reset=0, left=1, right=0
+0 0 0 0 0 0
+Reset
+Currently in State 00
+Success at   116 ns (test     5): state=00, reset=0, left=0, right=1
+0 0 0 1 0 0
+Reset
+Currently in State 00
+Currently in State 01
+Success at   136 ns (test     6): state=01, reset=0, left=0, right=1
+0 0 0 1 1 0
+Reset
+Currently in State 00
+Currently in State 01
+Currently in State 10
+Success at   166 ns (test     7): state=10, reset=0, left=0, right=1
+0 0 0 1 1 1
+Reset
+Currently in State 00
+Currently in State 01
+Currently in State 10
+Currently in State 11
+Success at   206 ns (test     8): state=11, reset=0, left=0, right=1
+0 0 0 0 0 0
+Reset
+   9 tests completed with    0 errors
+$finish called at time : 210 ns : File "C:/Users/Fabian/git/labs/Lab6_Report/Lab4_no_witchcraft.srcs/sim_1/new/FSM_Test.v" Line 120
